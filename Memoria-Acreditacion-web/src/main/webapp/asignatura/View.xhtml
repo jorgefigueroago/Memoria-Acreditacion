@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AsignaturaViewDlg" widgetVar="AsignaturaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="INFORMACIÓN ASIGNATURA">
+            <h:form id="AsignaturaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{asignaturaController.selected != null}">
+                        <h:outputText value="Código: "/>
+                        <h:outputText value="#{asignaturaController.selected.id_asignatura}" title="#{bundle.ViewAsignaturaTitle_id_asignatura}"/>
+                        <h:outputText value="Nombre: "/>
+                        <h:outputText value="#{asignaturaController.selected.nombre}" title="#{bundle.ViewAsignaturaTitle_nombre}"/>
+                        <h:outputText value="Total Horas: "/>
+                        <h:outputText value="#{asignaturaController.selected.cant_horas}" title="#{bundle.ViewAsignaturaTitle_cant_horas}"/>
+                        <h:outputText value="Carrera Asociada: "/>
+                        <h:outputText value="#{asignaturaController.selected.carrera.nombre}" title="#{bundle.ViewAsignaturaTitle_carrera}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="Cerrar" onclick="AsignaturaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

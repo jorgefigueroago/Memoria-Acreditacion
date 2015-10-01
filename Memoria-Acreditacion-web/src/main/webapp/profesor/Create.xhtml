@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <br/>
+        <p:dialog id="ProfesorCreateDlg" widgetVar="ProfesorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Profesor">
+            <h:form id="ProfesorCreateForm">
+                
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{profesorController.selected != null}">
+                       <p:outputLabel value="Nombres: " for="nombre" />
+                       <p:inputText id="nombre" value="#{profesorController.selected.nombre}" title="#{bundle.CreateProfesorTitle_nombre}" required="true" >
+                           <f:validator validatorId="custom.nombreValidador"/>
+                       </p:inputText>
+                        
+                        <p:outputLabel value="Apellidos: " for="apellido" />
+                        <p:inputText id="apellido" value="#{profesorController.selected.apellido}" required="true" title="#{bundle.CreateProfesorTitle_apellido}">
+                            <f:validator validatorId="custom.nombreValidador"/>
+                        </p:inputText>
+                            
+                        <p:outputLabel value="RUN: " for="rut_profesor" />
+                        <p:inputMask id="rut_profesor" value="#{profesorController.selected.rut_profesor}" required="true" mask="999999999" title="#{bundle.CreateProfesorTitle_rut_profesor}" >
+                            <f:validator validatorId="custom.numeroValidador"/>
+                            <f:validateLength minimum="9" maximum="9"/>
+                        </p:inputMask>   
+                        <p:outputLabel value="Fecha de Nacimiento: " for="fecha_nacimiento" />
+                        <p:calendar id="fecha_nacimiento"  value="#{profesorController.selected.fecha_nacimiento}"  required="true" title="#{bundle.CreateProfesorTitle_fecha_nacimiento}" pattern="dd-MM-yyyy" mask="true" showOn="button"  />
+                        <p:outputLabel value="Año de ingreso: " for="ano_ingreso" />
+                        <p:inputMask id="ano_ingreso" value="#{profesorController.selected.ano_ingreso}" required="true"  mask="9999" title="#{bundle.CreateProfesorTitle_ano_ingreso}" >
+                            <f:validator validatorId="custom.numeroValidador"/>
+                            <f:validateLength minimum="4" maximum="4"/>
+                        </p:inputMask>
+                        <p:outputLabel for="jornada" value="Jornada Contrato: " />
+                        <p:selectOneMenu id="jornada" value="#{profesorController.selected.contrato}"  required="true" style="width:190px">
+                                    <f:selectItem itemLabel="Seleccione Jornada" itemValue=""/>
+                                    <f:selectItem itemLabel="Completa" itemValue="Completa"/>
+                                    <f:selectItem itemLabel="Parcial" itemValue="Parcial"/>
+                                    <f:selectItem itemLabel="Por Hora" itemValue="Por Hora"/>
+                                </p:selectOneMenu>
+                        <p:outputLabel value="Tipo de Jerarquía: " for="jerarquia" />
+                        <p:selectOneMenu id="jerarquia"  required="true" value="#{profesorController.selected.jerarquia}" >
+                                    <f:selectItem itemLabel="Seleccione Jearquía" itemValue=""/>
+                            <f:selectItems value="#{jerarquiaController.itemsAvailableSelectOne}"
+                                           var="jerarquiaItem"
+                                           itemValue="#{jerarquiaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Grado Académico" for="grado" />
+                        <p:selectOneMenu id="grado"  required="true" value="#{profesorController.selected.grado}" >
+                            <f:selectItem itemLabel="Seleccione Grado" itemValue=""/>
+                            <f:selectItems value="#{gradoAcademicoController.itemsAvailableSelectOne}"
+                                           var="gradoItem"
+                                           itemValue="#{gradoItem}"/>
+                        </p:selectOneMenu>
+                        
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{profesorController.create}" value="Guardar" update="display,:ProfesorListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProfesorCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="ProfesorCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

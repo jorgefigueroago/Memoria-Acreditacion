@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+ 
+        <p:dialog id="ProfesorACreateDlg" widgetVar="ProfesorACreateDialog" height="400" modal="true" resizable="false" appendTo="@(body)" header="Administrar Asignaturas" width="60%">
+            <h:form id="ProfesorACreateForm">
+                <p:panel header="Asignaturas Disponibles">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="4" rendered="#{profesorController.selected != null}">
+                        <p:dataTable id="datalist" value="#{profesorController.cursos_totales}" var="item"
+                                     selectionMode="single" selection="#{profesorController.curso_add}"
+                                    paginator="true"
+                                    rowKey="#{item.id_asignatura}"
+                                    rows="10"
+                                    rowsPerPageTemplate="10,20,30,40,50"
+                                    >
+
+                           <p:ajax event="rowSelect"   update="createButton"/>
+                           <p:ajax event="rowUnselect" update="createButton"/>
+
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="CÓDIGO ASIGNATURA"/>
+                               </f:facet>
+                               <h:outputText value="#{item.id_asignatura}"/>
+                           </p:column>
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="NOMBRE"/>
+                               </f:facet>
+                               <h:outputText value="#{item.nombre}"/>
+                           </p:column>
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="CANTIDAD DE HORAS"/>
+                               </f:facet>
+                               <h:outputText value="#{item.cant_horas}"/>
+                           </p:column>
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="CARRERA ASOCIADA"/>
+                               </f:facet>
+                               <h:outputText value="#{item.carrera.nombre}"/>
+                           </p:column>
+                           <f:facet name="footer">
+                               <p:commandButton id="createButton" icon="ui-icon-plus"   value="Asignar Curso" actionListener="#{profesorController.addAsignatura}" update=":ProfesorACreateForm, :ProfesorACreateForm2"  disabled="#{empty profesorController.curso_add}"/>
+                           </f:facet>
+                        </p:dataTable>
+                    </p:panelGrid>
+                </h:panelGroup>
+                </p:panel>
+            </h:form>
+            
+            <h:form id="ProfesorACreateForm2">
+                <p:panel header="Asignaturas Vinculadas">
+                <h:panelGroup id="display2">
+                    <h:panelGrid columns="4" rendered="#{profesorController.selected != null}">
+                        <p:dataTable id="datalist2" value="#{profesorController.cursos}" var="item_curso"
+                                     selectionMode="single" selection="#{profesorController.curso_del}"
+                                    paginator="true"
+                                    rowKey="#{item_curso.id_asignatura}"
+                                    rows="10"
+                                    rowsPerPageTemplate="10,20,30,40,50"
+                                    >
+
+                           <p:ajax event="rowSelect"   update="deleteButton"/>
+                           <p:ajax event="rowUnselect" update="deleteButton"/>
+
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="CÓDIGO ASIGNATURA"/>
+                               </f:facet>
+                               <h:outputText value="#{item_curso.id_asignatura}"/>
+                           </p:column>
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="NOMBRE"/>
+                               </f:facet>
+                               <h:outputText value="#{item_curso.nombre}"/>
+                           </p:column>
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="CANTIDAD DE HORAS"/>
+                               </f:facet>
+                               <h:outputText value="#{item_curso.cant_horas}"/>
+                           </p:column>
+                           <p:column>
+                               <f:facet name="header">
+                                   <h:outputText value="CARRERA ASOCIADA"/>
+                               </f:facet>
+                               <h:outputText value="#{item_curso.carrera}"/>
+                           </p:column>
+                           <f:facet name="footer">
+                                <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Quitar Curso" actionListener="#{profesorController.delAsignatura}" update=":ProfesorACreateForm, :ProfesorACreateForm2"  disabled="#{empty profesorController.curso_del}"/>
+                           </f:facet>
+                        </p:dataTable>
+                        
+                    </h:panelGrid>
+                    
+                </h:panelGroup>
+                </p:panel>
+            </h:form>
+            
+            
+        </p:dialog>
+
+    </ui:composition>
+</html>

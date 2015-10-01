@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Acreditación</title>
+
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputStylesheet name="css/bootstrap.css" />
+        <h:outputStylesheet name="css/pushy.css" />
+        <h:outputStylesheet name="css/font-awesome.css" />
+        <link rel="icon" href="#{request.contextPath}/resources/logo1.png"/>
+        <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+    </h:head>
+
+    <h:body>
+        <nav class="pushy pushy-left">
+            <ul>
+                <li class="fondo_usuario">
+                    <h:link>   
+                        <span style="color:#fff;" class="roboto">Herramientas</span>
+                    </h:link>
+               </li>
+                <li class="roboto"><h:link outcome="/index1" style="color:#fff;"><i class="fa fa-home"></i> Portada</h:link></li>
+                <li class="roboto">
+                    <h:link outcome="/index2" style="color:#fff;"><i class="fa fa-sign-in"></i> Administrador</h:link>
+                </li>
+                <li class="roboto">
+                    <h:link outcome="/profesor/List" style="color:#fff;"><i class="fa fa-sign-in"></i> Profesor</h:link>
+                </li><li style="padding-top: 30px;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-lg-4">
+                                <img class="logo" width="80" src="http://www.usach.cl/sites/default/files/logo-usach.png" alt="" />
+                            </div>
+                            <div class="col-lg-8 roboto" style="margin-top: 30px;color:#fff;">
+                                Departamento de Ingeniería Informática
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul> 
+        </nav>
+        <!-- Site Overlay -->
+        <div class="site-overlay"></div>
+
+        <p:growl id="growl" life="5000" />
+        <p:layout fullPage="true">
+            <h:form id="menuForm" class="header">
+                    <nav class="navbar navbar-inverse navbar-fixed-top ">
+                      <div class="container-fluid">
+                        <div class="navbar-header">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </div>
+                          
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+                            <ul class="nav navbar-nav">
+                              <!--<li><h:link outcome="/index"><span class="glyphicon glyphicon-home" aria-hidden="true"/> Home</h:link></li>-->
+                              <li > <a href="#" class="menu-btn"><i class="fa fa-bars"></i></a></li>
+                              
+                              <li class="textoTitulo"><h:link outcome="/index1" > Sistema de Gestión de la Acreditación</h:link></li>                     
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                      </div><!-- /.container-fluid -->
+                    </nav>                    
+                </h:form>
+            <!--</p:layoutUnit>-->
+            
+            
+            <!--fin de cabecera-->
+            
+            
+            <!-- inicio de cuerpo -->
+            
+            <p:layoutUnit position="center">
+            <div class="container" style="min-height: 450px;">
+                <div class="row">
+                    <ui:insert name="body"> </ui:insert>
+                </div>
+            </div>
+        <footer class="hidden-print">
+            <div class="container">
+                <div class="row inner-footer open-sans fondo_usach">
+                    <div class="col-lg-12">
+                        <div class="col-lg-10">
+                            <span>Universidad de Santiago de Chile. Avenida Ecuador #3659. Estación Central, Santiago de Chile.</span>
+                            <br/><span>Teléfono (562) 2 718 09 00 - Correo: contacto@informatica.usach.cl</span>
+                        </div>
+                        <div class="col-lg-2 text-right">
+                            <a href="https://www.facebook.com/DIINF.UdeSantiago" class="icon-social" target="_blank"><span><i class="fa fa-facebook"></i></span></a>
+                            <a href="https://twitter.com/diinf" class="icon-social" target="_blank"><span><i class="fa fa-twitter"></i></span></a>
+                            <a href="https://www.linkedin.com/groups?home=&amp;gid=1901176" class="icon-social" target="_blank"><span><i class="fa fa-linkedin-square"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </p:layoutUnit>
+        </p:layout>
+    </h:body>  
+<h:outputScript name="js/bootstrap.js" />
+<h:outputScript name="js/pushy.js" />
+
+<h:outputScript name="js/language_es.js" />
+
+
+</html>

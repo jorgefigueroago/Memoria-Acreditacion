@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AsignaturaCreateDlg" widgetVar="AsignaturaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nueva Asignatura">
+            <h:form id="AsignaturaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{asignaturaController.selected != null}">
+                        <p:outputLabel value="Nombre: " for="nombre" />
+                        <p:inputText id="nombre" value="#{asignaturaController.selected.nombre}" required="true" title="#{bundle.CreateAsignaturaTitle_nombre}" >
+                            <f:validator validatorId="custom.nombreValidador"/>
+                        </p:inputText>   
+                        <p:outputLabel value="Semestre: " for="semestre" />
+                        <p:inputMask id="semestre" value="#{asignaturaController.selected.semestre}" required="true" mask="9" title="#{bundle.CreateAsignaturaTitle_semestre}" >
+                            <f:validator validatorId="custom.numeroValidador"/>
+                            <f:validateLength minimum="1" maximum="1"/>
+                        </p:inputMask>
+                        <p:outputLabel value="Año: " for="ano" />
+                        <p:inputMask id="ano" required="true" value="#{asignaturaController.selected.ano}" mask="9999" title="#{bundle.CreateAsignaturaTitle_ano}" >
+                            <f:validator validatorId="custom.numeroValidador"/>
+                            <f:validateLength minimum="4" maximum="4"/>
+                        </p:inputMask>
+                        <p:outputLabel value="Total de Horas: " for="cant_horas"  />
+                        <p:inputText id="cant_horas"  required="true" value="#{asignaturaController.selected.cant_horas}" title="#{bundle.CreateAsignaturaTitle_cant_horas}" />
+                        <p:outputLabel value="Carrera Asociada: " for="carrera" />
+                        <p:selectOneMenu id="carrera" required="true" value="#{asignaturaController.selected.carrera}" >
+                            <f:selectItems value="#{carreraController.itemsAvailableSelectOne}"
+                                           var="carreraItem"
+                                           itemValue="#{carrera.item}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{asignaturaController.create}" value="Guardar" update="display,:AsignaturaListForm:datalist,:growl" oncomplete="handleSubmit(args,'AsignaturaCreateDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="AsignaturaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
