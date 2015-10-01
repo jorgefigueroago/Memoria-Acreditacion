@@ -1162,6 +1162,7 @@ public class GradoAcademicoController implements Serializable {
     
  
     public List<gradoNum> getListaGN() {
+        System.out.println("Cargando lista...");
         listaGN = new ArrayList<>();
         Date fecha = new Date();
         int year;
@@ -1208,8 +1209,11 @@ public class GradoAcademicoController implements Serializable {
             }
         }
         nuevod.cant_prof1 = cont3;
+        System.out.println("cont3= " + cont3);
         nuevod.cant_prof2 = cont2;
+        System.out.println("cont2= " + cont2);
         nuevod.cant_prof3 = cont1;
+        System.out.println("cont1= " + cont1);
 
         cont1 = 0; cont2 = 0; cont3 = 0;
 

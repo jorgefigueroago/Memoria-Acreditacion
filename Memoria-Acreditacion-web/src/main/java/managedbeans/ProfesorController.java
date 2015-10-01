@@ -337,17 +337,17 @@ public class ProfesorController implements Serializable {
         List <Profesor> pyear1aux1 = getFacade().findByAno(year3);
         List <Profesor> pyear1aux2 = getFacade().findByAnoRetiro(year3);
         List <Profesor> pyear1 = new ArrayList<Profesor>();
-        //pyear1.addAll(pyear1aux1);
+        pyear1.addAll(pyear1aux1);
         pyear1.addAll(pyear1aux2);
         List <Profesor> pyear2aux1 = getFacade().findByAno(year2);
         List <Profesor> pyear2aux2 = getFacade().findByAnoRetiro(year2);
         List <Profesor> pyear2 = new ArrayList<Profesor>();
-        //pyear2.addAll(pyear2aux1);
+        pyear2.addAll(pyear2aux1);
         pyear2.addAll(pyear2aux2);
         List <Profesor> pyear3aux1 = getFacade().findByAno(year);
         List <Profesor> pyear3aux2 = getFacade().findByAnoRetiro(year);
         List <Profesor> pyear3 = new ArrayList<Profesor>();
-       // pyear3.addAll(pyear3aux1);
+        pyear3.addAll(pyear3aux1);
         pyear3.addAll(pyear3aux2);
         
         for (int i = 0; i < pyear1.size(); i++) {
@@ -415,23 +415,33 @@ public class ProfesorController implements Serializable {
         
         List<Profesor> total = getFacade().findAll();
         for (int i = 0; i < total.size() ; i++) {
+            
+            if("Completa".equals(total.get(i).getContrato())){
+                    if((total.get(i).getAno_ingreso() <= year3) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro()>= year3)){
+                        totalc1+= 1;
+                        }
+                    if((total.get(i).getAno_ingreso() <= year2) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year2)){
+                        totalc2+= 1;
+                        }
+                    if((total.get(i).getAno_ingreso() <= year) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year)) {
+                        totalc3+= 1;
+
+                        }
+                    }
+            
             for (int j = 0; j < total.get(i).getAsignaturaList().size(); j++) {
                 
                 if("Completa".equals(total.get(i).getContrato())){
                     if((total.get(i).getAno_ingreso() <= year3) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro()>= year3)){
                         horasc1 = total.get(i).getAsignaturaList().get(j).getCant_horas();
-                        totalc1+= 1;
                         }
                     if((total.get(i).getAno_ingreso() <= year2) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year2)){
                         horasc2+=total.get(i).getAsignaturaList().get(j).getCant_horas();
-                        totalc2+= 1;
                         }
                     if((total.get(i).getAno_ingreso() <= year) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year)) {
                         horasc3+=total.get(i).getAsignaturaList().get(j).getCant_horas();
-                        totalc3+= 1;
 
                         }
-
                     }
                 
             
