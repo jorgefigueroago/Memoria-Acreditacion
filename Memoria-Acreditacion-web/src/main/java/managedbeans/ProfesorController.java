@@ -633,8 +633,6 @@ public class ProfesorController implements Serializable {
         FacesContext context = FacesContext.getCurrentInstance();
         if (selected.getAsignaturaList().contains(curso_add)){
             System.out.println("La asignatura ya existe");
-            JsfUtil.addErrorMessage("La asignatura ya existe");
-            context.addMessage(null, new FacesMessage("La asignatura ya existe"));
         }
         else{
             curso_add.getProfesorasignaturaList().add(selected);
