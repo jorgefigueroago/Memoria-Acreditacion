@@ -635,6 +635,7 @@ public class ProfesorController implements Serializable {
             System.out.println("La asignatura ya existe");
         }
         else{
+            System.out.println("Asignatura asignada");
             curso_add.getProfesorasignaturaList().add(selected);
             selected.getAsignaturaList().add(curso_add);
             asgFacade.edit(curso_add);
