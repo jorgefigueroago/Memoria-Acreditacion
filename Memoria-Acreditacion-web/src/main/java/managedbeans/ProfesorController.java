@@ -381,9 +381,9 @@ public class ProfesorController implements Serializable {
         horaContrato = renta1/44;
         horaContrato2 = renta2/44;
         horaContrato3 = renta3/44;
-        nuevo.renta1 = renta1;
-        nuevo.renta2 = renta2;
-        nuevo.renta3 = renta3;
+        nuevo.renta1 = Math.rint(renta1*100)/100;
+        nuevo.renta2 = Math.rint(renta2*100)/100;
+        nuevo.renta3 = Math.rint(renta3*100)/100;
         nuevo2.renta1 = Math.rint(horaContrato*100)/100;
         nuevo2.renta2 = Math.rint(horaContrato2*100)/100;
         nuevo2.renta3 = Math.rint(horaContrato3*100)/100;
@@ -442,11 +442,25 @@ public class ProfesorController implements Serializable {
 
                     }
             
+            if("Por Hora".equals(total.get(i).getContrato())){
+                    if((total.get(i).getAno_ingreso() <= year3) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year3)){
+                       totalh1+= 1;
+                        }
+                    if((total.get(i).getAno_ingreso() <= year2) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year2)){
+                        totalh2+= 1;
+                        }
+                    if((total.get(i).getAno_ingreso() <= year) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year)){
+                        totalh3+= 1;
+
+                        }
+
+                    }
+            
             for (int j = 0; j < total.get(i).getAsignaturaList().size(); j++) {
                 
                 if("Completa".equals(total.get(i).getContrato())){
                     if((total.get(i).getAno_ingreso() <= year3) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro()>= year3)){
-                        horasc1 = total.get(i).getAsignaturaList().get(j).getCant_horas();
+                        horasc1 += total.get(i).getAsignaturaList().get(j).getCant_horas();
                         }
                     if((total.get(i).getAno_ingreso() <= year2) &&  (total.get(i).isVigente() == true || total.get(i).getAnoRetiro() >= year2)){
                         horasc2+=total.get(i).getAsignaturaList().get(j).getCant_horas();
