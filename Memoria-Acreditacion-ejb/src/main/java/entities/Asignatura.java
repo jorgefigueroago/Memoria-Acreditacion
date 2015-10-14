@@ -44,6 +44,8 @@ public class Asignatura implements Serializable {
     private float cant_horas;
     private int semestre;
     private int ano;
+    private int codigo;
+    private String coordinacion;
     
     @ManyToOne
     private Carrera carrera;
@@ -74,6 +76,23 @@ public class Asignatura implements Serializable {
         return cant_horas;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getCoordinacion() {
+        return coordinacion;
+    }
+
+    public void setCoordinacion(String coordinacion) {
+        this.coordinacion = coordinacion;
+    }
+    
+    
     public void setCant_horas(float cant_horas) {
         this.cant_horas = cant_horas;
     }
