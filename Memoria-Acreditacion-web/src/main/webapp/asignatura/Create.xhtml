@@ -16,6 +16,15 @@
                         <p:inputText id="nombre" value="#{asignaturaController.selected.nombre}" required="true" title="#{bundle.CreateAsignaturaTitle_nombre}" >
                             <f:validator validatorId="custom.nombreValidador"/>
                         </p:inputText>   
+                        <p:outputLabel value="Código: " for="codigo" />
+                        <p:inputMask id="codigo" required="true" value="#{asignaturaController.selected.codigo}" mask="99999" title="#{bundle.CreateAsignaturaTitle_codigo}" >
+                            <f:validator validatorId="custom.numeroValidador"/>
+                            <f:validateLength minimum="5" maximum="5"/>
+                        </p:inputMask>
+                        <p:outputLabel value="Coordinación: " for="coordinacion" />
+                        <p:inputText id="coordinacion" value="#{asignaturaController.selected.coordinacion}" required="true" title="#{bundle.CreateAsignaturaTitle_coordinacion}" >
+                            <f:validator validatorId="custom.nombreValidador"/>
+                        </p:inputText> 
                         <p:outputLabel value="Semestre: " for="semestre" />
                         <p:inputMask id="semestre" value="#{asignaturaController.selected.semestre}" required="true" mask="9" title="#{bundle.CreateAsignaturaTitle_semestre}" >
                             <f:validator validatorId="custom.numeroValidador"/>

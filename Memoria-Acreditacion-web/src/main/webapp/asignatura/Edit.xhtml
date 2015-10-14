@@ -14,7 +14,11 @@
                     <p:panelGrid columns="2" rendered="#{asignaturaController.selected != null}">
                         <p:outputLabel value="Nombre: " for="nombre" />
                         <p:inputText id="nombre" value="#{asignaturaController.selected.nombre}" title="#{bundle.EditAsignaturaTitle_nombre}" />
-                        <p:outputLabel value="Total de Horas: " for="cant_horas" />
+                        <p:outputLabel value="Código: " for="codigo" />
+                        <p:inputText id="codigo" value="#{asignaturaController.selected.codigo}" title="#{bundle.EditAsignaturaTitle_codigo}" />
+                        <p:outputLabel value="Coordinación: " for="coordinacion" />
+                        <p:inputText id="coordinacion" value="#{asignaturaController.selected.coordinacion}" title="#{bundle.EditAsignaturaTitle_coordinacion}" />
+                         <p:outputLabel value="Total de Horas: " for="cant_horas" />
                         <p:inputText id="cant_horas" value="#{asignaturaController.selected.cant_horas}" title="#{bundle.EditAsignaturaTitle_cant_horas}" />
                         <p:outputLabel value="Carrera Asociada" for="carrera" />
                         <p:selectOneMenu id="carrera" value="#{asignaturaController.selected.carrera}" >

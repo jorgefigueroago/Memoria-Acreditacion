@@ -13,9 +13,11 @@
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{asignaturaController.selected != null}">
                         <h:outputText value="Código: "/>
-                        <h:outputText value="#{asignaturaController.selected.id_asignatura}" title="#{bundle.ViewAsignaturaTitle_id_asignatura}"/>
+                        <h:outputText value="#{asignaturaController.selected.codigo}" title="#{bundle.ViewAsignaturaTitle_codigo}"/>
                         <h:outputText value="Nombre: "/>
                         <h:outputText value="#{asignaturaController.selected.nombre}" title="#{bundle.ViewAsignaturaTitle_nombre}"/>
+                        <h:outputText value="Coordinación: "/>
+                        <h:outputText value="#{asignaturaController.selected.coordinacion}" title="#{bundle.ViewAsignaturaTitle_coordinacion}"/>
                         <h:outputText value="Total Horas: "/>
                         <h:outputText value="#{asignaturaController.selected.cant_horas}" title="#{bundle.ViewAsignaturaTitle_cant_horas}"/>
                         <h:outputText value="Carrera Asociada: "/>

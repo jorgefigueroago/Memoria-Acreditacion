@@ -38,13 +38,19 @@
                             <f:facet name="header">
                                 <h:outputText value="Código"/>
                             </f:facet>
-                            <h:outputText value="#{item.id_asignatura}"/>
+                            <h:outputText value="#{item.codigo}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
+                        </p:column>
+                        <p:column >
+                            <f:facet name="header">
+                                <h:outputText value="Coordinación"/>
+                            </f:facet>
+                            <h:outputText value="#{item.coordinacion}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
