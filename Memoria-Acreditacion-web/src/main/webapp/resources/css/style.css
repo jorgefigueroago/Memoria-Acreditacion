@@ -1,0 +1,65 @@
+html{
+	width: 100%;
+	overflow-x: hidden;
+}
+.logo{
+	height: 122px;
+	width: 71px;
+}
+.nav-logo{
+	margin-bottom: 0px;
+}
+.navbar-header-logo{
+	background-color: #1D58A8;
+	width: 100%;
+	height: 142px;
+	color:#ddd;
+	position:relative;
+}
+.spacer-80{
+	height: 80px;
+}
+.title{
+	bottom: 0pt;
+	left:100px;
+	position: absolute;
+}
+
+#footer{
+	height: 100px;
+	background-color: #1D58A8;
+	color:#ddd;
+	border-top: 20px orange solid;
+}
+#footer a{
+	color:#AEC0CF;
+
+}
+#footer a:visited{
+	text-decoration: none;
+	color:#AEC0CF;
+}
+.orange{
+	background-color: orange;
+	color:#ddd;
+}
+#bs-example-navbar-collapse-1 li a{
+	color:#000;
+}
+#bs-example-navbar-collapse-1 li:hover{
+	background-color: #d99324;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+	background-color: #d99324;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
+	background-color: #d99324;
+}
+#footer-right-text{
+	margin-top: 10px;
+	margin-right: 20px;
+}
+#page-content-wrapper{
+	min-height: 400px;
+}
+
