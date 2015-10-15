@@ -13,6 +13,7 @@
         <h:outputStylesheet name="css/bootstrap.css" />
         <h:outputStylesheet name="css/pushy.css" />
         <h:outputStylesheet name="css/font-awesome.css" />
+        <link rel="icon" href="#{request.contextPath}/resources/logo1.png"/>
         <h:outputScript library="primefaces" name="jquery/jquery.js"/>
     </h:head>
 
@@ -30,27 +31,38 @@
                           
                         <!-- Collect the nav links, forms, and other content for toggling -->
 
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
-                            <ul class="nav navbar-nav">
-                              <!--<li><h:link outcome="/index"><span class="glyphicon glyphicon-home" aria-hidden="true"/> Home</h:link></li>-->
-                              
-                              
-                              <li class="textoTitulo"><h:link outcome="/index1" > Sistema de Gestión de la Acreditación</h:link></li>                     
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
+                            <div align="left">
+                                <table cellpadding="0" cellspacing="0"><tr>
+                                    <td><h:graphicImage value="/resources/logo-usach.png"/></td>	
+                                    <td><h1>Sistema de Gestión de la Acreditación</h1></td>
+                                    </tr></table>
+                            </div>
+                      
+                        
                       </div><!-- /.container-fluid -->
-                    </nav>                    
+                    </nav>  
+         
+            
                 </h:form>
+            
+            
+                 
             <!--</p:layoutUnit>-->
             
             
             <!--fin de cabecera-->
             
-            
             <!-- inicio de cuerpo -->
             
             <p:layoutUnit position="center">
-            <div class="container" style="min-height: 450px;">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                
+            <div class="container" style="min-height: 400px;">
                 <div class="row">
                     <ui:insert name="body"> </ui:insert>
                 </div>
