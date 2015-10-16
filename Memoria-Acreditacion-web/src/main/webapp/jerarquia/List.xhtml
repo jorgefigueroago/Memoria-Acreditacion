@@ -32,13 +32,13 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-                        <p:column>
+                        <p:column width="80">
                             <f:facet name="header">
                                 <h:outputText value="Código"/>
                             </f:facet>
-                            <h:outputText value="#{item.id_jerarquia}"/>
+                            <div align="center"><h:outputText value="#{item.id_jerarquia}"/></div>
                         </p:column>
-                        <p:column>
+                        <p:column width="200">
                             <f:facet name="header">
                                 <h:outputText value="Nombre"/>
                             </f:facet>

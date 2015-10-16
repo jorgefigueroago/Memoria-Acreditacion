@@ -30,7 +30,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Profesor.findByNombre", query = "SELECT a FROM Profesor a WHERE a.nombre = :nombre"),
-    @NamedQuery(name = "Profesor.findByApellido", query = "SELECT a FROM Profesor a WHERE a.apellido = :apellido"),
     @NamedQuery(name = "Profesor.findByRenta", query = "SELECT a FROM Profesor a WHERE a.renta = :renta"),
     @NamedQuery(name = "Profesor.findByAno", query = "SELECT a FROM Profesor a WHERE a.ano_ingreso <= :ano AND a.vigente = :vigente"),
     @NamedQuery(name = "Profesor.findByAnoRetiro", query = "SELECT a FROM Profesor a WHERE a.ano_ingreso <= :ano AND a.vigente = :vigente AND a.anoRetiro >= :ano"),
@@ -49,7 +48,8 @@ public class Profesor implements Serializable {
     private Long rut_profesor;
     private int anoRetiro;
     private String nombre;
-    private String apellido;
+    private String apellido_pat;
+    private String apellido_mat;
     private float renta;
     private String contrato;
     private boolean vigente;
@@ -86,15 +86,23 @@ public class Profesor implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellido_pat() {
+        return apellido_pat;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellido_pat(String apellido_pat) {
+        this.apellido_pat = apellido_pat;
     }
 
-    
+    public String getApellido_mat() {
+        return apellido_mat;
+    }
+
+    public void setApellido_mat(String apellido_mat) {
+        this.apellido_mat = apellido_mat;
+    }
+
+   
     public float getRenta() {
         return renta;
     }

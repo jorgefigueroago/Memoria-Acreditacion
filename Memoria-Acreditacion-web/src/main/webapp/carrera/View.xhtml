@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="CarreraViewDlg" widgetVar="CarreraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="INFORMACIÓN CARRERA">
+        <p:dialog id="CarreraViewDlg" closeOnEscape="true" widgetVar="CarreraViewDialog" modal="true" resizable="false" appendTo="@(body)" header="INFORMACIÓN CARRERA">
             <h:form id="CarreraViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{carreraController.selected != null}">

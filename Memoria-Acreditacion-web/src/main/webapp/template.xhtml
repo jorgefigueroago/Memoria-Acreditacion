@@ -13,16 +13,15 @@
         <h:outputStylesheet name="css/bootstrap.css" />
         <h:outputStylesheet name="css/pushy.css" />
         <h:outputStylesheet name="css/font-awesome.css" />
-        <link rel="icon" href="#{request.contextPath}/resources/logo1.png"/>
         <h:outputScript library="primefaces" name="jquery/jquery.js"/>
     </h:head>
-
+  
     <h:body>
-        
+     
         <!-- Site Overlay -->
         <div class="site-overlay"></div>
 
-        <p:growl id="growl" life="5000" />
+        
         <p:layout fullPage="true">
             <h:form id="menuForm" class="header">
                     <nav class="navbar navbar-inverse navbar-fixed-top ">
@@ -34,18 +33,16 @@
                             <div align="left">
                                 <table cellpadding="0" cellspacing="0"><tr>
                                     <td><h:graphicImage value="/resources/logo-usach.png"/></td>	
-                                    <td><h1>Sistema de Gestión de la Acreditación</h1></td>
+                                    <td><h1 style="color:white">Sistema de Gestión de la Acreditación</h1></td>
                                     </tr></table>
                             </div>
                       
                         
                       </div><!-- /.container-fluid -->
                     </nav>  
-         
+            </h:form>
             
-                </h:form>
-            
-            
+           
                  
             <!--</p:layoutUnit>-->
             
@@ -55,13 +52,11 @@
             <!-- inicio de cuerpo -->
             
             <p:layoutUnit position="center">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                
+                <hr/>
+                <hr/>
+                <hr/>
+                <hr/>
+            <p:growl id="growl" life="5000" />     
             <div class="container" style="min-height: 400px;">
                 <div class="row">
                     <ui:insert name="body"> </ui:insert>

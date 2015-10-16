@@ -8,7 +8,7 @@
 
     <ui:composition>
         <br/>
-        <p:dialog id="ProfesorCreateDlg" widgetVar="ProfesorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Profesor">
+        <p:dialog id="ProfesorCreateDlg" widgetVar="ProfesorCreateDialog"  closeOnEscape="true" modal="true" resizable="false" appendTo="@(body)"  height="300" header="Nuevo Profesor">
             <h:form id="ProfesorCreateForm">
                 
                 <h:panelGroup id="display">
@@ -18,8 +18,13 @@
                            <f:validator validatorId="custom.nombreValidador"/>
                        </p:inputText>
                         
-                        <p:outputLabel value="Apellidos: " for="apellido" />
-                        <p:inputText id="apellido" value="#{profesorController.selected.apellido}" required="true" title="#{bundle.CreateProfesorTitle_apellido}">
+                        <p:outputLabel value="Apellido paterno: " for="apellidopat" />
+                        <p:inputText id="apellidopat" value="#{profesorController.selected.apellido_pat}" required="true" title="apellidopat">
+                            <f:validator validatorId="custom.nombreValidador"/>
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Apellido materno: " for="apellidomat" />
+                        <p:inputText id="apellidomat" value="#{profesorController.selected.apellido_mat}" required="true" title="apellidomat">
                             <f:validator validatorId="custom.nombreValidador"/>
                         </p:inputText>
                             

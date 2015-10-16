@@ -148,13 +148,15 @@ body{
     
 }
 
+
+
 .ui-growl{
     margin-top: 50px;
 }
 
 
 #container{
-    position: relative;
+    position:  absolute; 
     padding: 20px 40px;
 }
 ul{
@@ -302,6 +304,7 @@ html, body{
     }   
 body {
   font-weight: 300;
+  padding-top: 70px;
   text-rendering: optimizeLegibility;
 
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -520,6 +523,7 @@ box-shadow: 9px 11px 13px -6px rgba(0,0,0,0.75);*/
 
 #growl_container{
     padding-top: 50px;
+    
     
 }
 

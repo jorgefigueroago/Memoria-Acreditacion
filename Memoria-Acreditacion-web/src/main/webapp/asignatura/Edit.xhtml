@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="AsignaturaEditDlg" widgetVar="AsignaturaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="EDITAR INFORMACIÓN">
+        <p:dialog id="AsignaturaEditDlg" closeOnEscape="true" widgetVar="AsignaturaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="EDITAR INFORMACIÓN">
             <h:form id="AsignaturaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{asignaturaController.selected != null}">

@@ -37,63 +37,69 @@
                             <f:facet name="header">
                                 <h:outputText value="RUN"/>
                             </f:facet>
-                            <h:outputText value="#{item.rut_profesor}"/>
+                            <div align="center"> <h:outputText  value="#{item.rut_profesor}"/></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Nombres"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombre}"/>
+                            <h:outputText value="#{item.nombre}" style="center"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Apellidos"/>
+                                <h:outputText value="Apellido paterno"/>
                             </f:facet>
-                            <h:outputText value="#{item.apellido}"/>
+                            <h:outputText value="#{item.apellido_pat}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="Fecha de Nacimiento:"/>
+                                <h:outputText value="Apellido materno"/>
                             </f:facet>
-                            <h:outputText value="#{item.fecha_nacimiento}">
+                            <h:outputText value="#{item.apellido_mat}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Fecha de Nacimiento"/>
+                            </f:facet>
+                            <div align="center"><h:outputText value="#{item.fecha_nacimiento}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
+                                </h:outputText></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Renta Mensual"/>
                             </f:facet>
-                            <h:outputText value="#{item.renta}"/>
+                            <div align="center"><h:outputText value="#{item.renta}"/></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Año de Ingreso"/>
                             </f:facet>
-                            <h:outputText value="#{item.ano_ingreso}"/>
+                            <div align="center"><h:outputText value="#{item.ano_ingreso}"/></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Tipo de Contrato"/>
                             </f:facet>
-                            <h:outputText value="#{item.contrato}"/>
+                            <div align="center"><h:outputText value="#{item.contrato}"/></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Tipo de Jerarquía"/>
                             </f:facet>
-                            <h:outputText value="#{item.jerarquia.nombre}"/>
+                            <div align="center"><h:outputText value="#{item.jerarquia.nombre}"/></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Grado Académico"/>
                             </f:facet>
-                            <h:outputText value="#{item.grado.nombre}"/>
+                            <div align="center"><h:outputText value="#{item.grado.nombre}"/></div>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="Año Retiro"/>
                             </f:facet>
-                            <h:outputText value="#{item.anoRetiro}"/>
+                            <div align="center"><h:outputText value="#{item.anoRetiro}"/></div>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="Nuevo" actionListener="#{profesorController.prepareCreate}" update=":ProfesorCreateForm" oncomplete="PF('ProfesorCreateDialog').show()"/>

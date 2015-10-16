@@ -8,16 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="ProfesorEditDlg" widgetVar="ProfesorEditDialog" modal="true" resizable="false" appendTo="@(body)" header="EDITAR INFORMACIÓN">
+        <p:dialog id="ProfesorEditDlg" widgetVar="ProfesorEditDialog" closeOnEscape="true" modal="true" resizable="false" height="300" appendTo="@(body)" header="EDITAR INFORMACIÓN">
             <h:form id="ProfesorEditForm">
-                <h:panelGroup id="display">
+              <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{profesorController.selected != null}">
                         <p:outputLabel value="RUN: " for="rut_profesor" />
                         <p:inputText id="rut_profesor" value="#{profesorController.selected.rut_profesor}" title="#{bundle.EditProfesorTitle_rut_profesor}" />
                         <p:outputLabel value="Nombres: " for="nombre" />
                         <p:inputText id="nombre" value="#{profesorController.selected.nombre}" title="#{bundle.EditProfesorTitle_nombre}" />
-                        <p:outputLabel value="Apellidos: " for="apellido" />
-                        <p:inputText id="apellido" value="#{profesorController.selected.apellido}" title="#{bundle.EditProfesorTitle_apellido}" />
+                        <p:outputLabel value="Apellido paterno: " for="apellidopat" />
+                        <p:inputText id="apellidopat" value="#{profesorController.selected.apellido_pat}" title="apellidopat" />
+                        <p:outputLabel value="Apellido materno: " for="apellidomat" />
+                        <p:inputText id="apellidomat" value="#{profesorController.selected.apellido_mat}" title="apellidomat" />
                         <p:outputLabel value="Fecha de Nacimiento: " for="fecha_nacimiento" />
                         <p:calendar id="fecha_nacimiento"  value="#{profesorController.selected.fecha_nacimiento}" title="#{bundle.CreateProfesorTitle_fecha_nacimiento}" pattern="dd-MM-yyyy" mask="true" showOn="button"  />
                         <p:outputLabel value="Año de ingreso: " for="ano_ingreso" />
@@ -44,8 +46,9 @@
                                            itemValue="#{gradoItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{profesorController.update}" value="#{bundle.Save}" update="display,:ProfesorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfesorEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="ProfesorEditDialog.hide()"/>
+                  <div align="center">
+                      <p:commandButton actionListener="#{profesorController.update}" value="Guardar" iconPos="right" update="display,:ProfesorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfesorEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="ProfesorEditDialog.hide()"/></div>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

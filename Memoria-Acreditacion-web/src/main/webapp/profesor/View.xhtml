@@ -4,20 +4,23 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      object.style.alignmentAdjust="true">
 
     <ui:composition>
 
-        <p:dialog id="ProfesorViewDlg" widgetVar="ProfesorViewDialog" modal="true" resizable="false" appendTo="@(body)" height="400" header= "INFORMACIÓN DEL PROFESOR">
+        <p:dialog id="ProfesorViewDlg" closeOnEscape="true" widgetVar="ProfesorViewDialog" modal="true" resizable="false" appendTo="@(body)" height="300" header= "INFORMACIÓN DEL PROFESOR">
             <h:form id="ProfesorViewForm">
-                <h:panelGroup id="display">
+                <h:panelGroup id="display" >
                     <p:panelGrid columns="2" rendered="#{profesorController.selected != null}">
                         <h:outputText value="RUN: "/>
                         <h:outputText value="#{profesorController.selected.rut_profesor}" title="#{bundle.ViewProfesorTitle_rut_profesor}"/>
                         <h:outputText value="Nombres: "/>
                         <h:outputText value="#{profesorController.selected.nombre}" title="#{bundle.ViewProfesorTitle_nombre}"/>
-                        <h:outputText value="Apellidos: "/>
-                        <h:outputText value="#{profesorController.selected.apellido}" title="#{bundle.ViewProfesorTitle_apellido}"/>
+                        <h:outputText value="Apellido paterno: "/>
+                        <h:outputText value="#{profesorController.selected.apellido_pat}" title="apellidopat"/>
+                        <h:outputText value="Apellido materno: "/>
+                        <h:outputText value="#{profesorController.selected.apellido_mat}" title="apellidomat"/>
                         <h:outputText value="Renta Mensual: "/>
                         <h:outputText value="#{profesorController.selected.renta}" title="#{bundle.ViewProfesorTitle_renta}"/>
                         <h:outputText value="Año de Ingreso: "/>
