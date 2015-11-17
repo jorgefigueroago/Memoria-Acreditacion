@@ -7121,4 +7121,8 @@ button.close {
     display: none !important;
   }
 }
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    z-index: 1;
+}
 /*# sourceMappingURL=bootstrap.css.map */

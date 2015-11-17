@@ -5,11 +5,18 @@ import entities.GradoAcademico;
 import entities.Jerarquia;
 import entities.Profesor;
 import entities.Rol;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
 import sessionbeans.ProfesorFacadeLocal;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,7 +33,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import sessionbeans.AsignaturaFacadeLocal;
+import sessionbeans.GradoAcademicoFacade;
+import sessionbeans.GradoAcademicoFacadeLocal;
+import sessionbeans.JerarquiaFacade;
+import sessionbeans.JerarquiaFacadeLocal;
 import sessionbeans.RolFacadeLocal;
 
 @Named("profesorController")
@@ -39,6 +52,12 @@ public class ProfesorController implements Serializable {
     private AsignaturaFacadeLocal asgFacade;
     @EJB
     private RolFacadeLocal rolFacade;
+    
+    @EJB
+    private JerarquiaFacadeLocal jerarquiaFacade;
+    
+    @EJB
+    private GradoAcademicoFacadeLocal gradoFacade;
     
     private List<Profesor> items = null;
     private List<Profesor> profeJerarGrado = null;
@@ -60,7 +79,15 @@ public class ProfesorController implements Serializable {
     private List<ContratoNumHora> listCNH = null;
     private List<edad> listEdad = null;
   
-    
+    private UploadedFile file;
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
 
     public Date getFecha_actual() {
         fecha_actual = new Date();
@@ -76,7 +103,97 @@ public class ProfesorController implements Serializable {
     public ProfesorController() {
     }
     
+    public void upload(FileUploadEvent event){
+      FileReader fr = null;
+      BufferedReader br = null;
+ 
+      try {
+         UploadedFile file= event.getFile();
+         br = new BufferedReader(new InputStreamReader(event.getFile().getInputstream()));
+         String linea;
+         br.readLine();
+         String[] texto=null;
        
+         
+         while((linea=br.readLine())!=null){
+             texto = linea.split(";");
+             Profesor profesorNuevo = new Profesor();
+             if( ejbFacade.find(Long.parseLong(texto[0]))!=null )continue ;
+             profesorNuevo.setRut_profesor(Long.parseLong(texto[0]) );
+             profesorNuevo.setApellido_pat(texto[1]);
+             profesorNuevo.setApellido_mat(texto[2]);
+             profesorNuevo.setNombre(texto[3]);
+             Date fechaNacimiento = new SimpleDateFormat("dd/MM/yyyy").parse(texto[4]);
+             profesorNuevo.setFecha_nacimiento(fechaNacimiento);
+             profesorNuevo.setJerarquia(jerarquiaFacade.findByNombre(texto[6]));
+             Date añoIngreso = new SimpleDateFormat("dd/MM/yyyy").parse(texto[5]);
+             profesorNuevo.setAno_ingreso(añoIngreso. getYear()+1900);
+             profesorNuevo.setGrado(gradoFacade.findByNombre(texto[8]));
+             profesorNuevo.setContrato(texto[9]);
+               if ("TITULAR".equals(profesorNuevo.getJerarquia().getNombre())) {
+            profesorNuevo.setRenta(90);
+            }
+        else{    
+            if ("ASOCIADO".equals(profesorNuevo.getJerarquia().getNombre())) {
+                profesorNuevo.setRenta(80);
+            }
+            else{    
+                if ("ASISTENTE".equals(profesorNuevo.getJerarquia().getNombre())) {
+                    profesorNuevo.setRenta(70);
+                }
+                else{    
+                    if ("INSTRUCTOR".equals(profesorNuevo.getJerarquia().getNombre())) {
+                        profesorNuevo.setRenta(60);
+                    }
+                    else{    
+                        if ("AYUDANTE".equals(profesorNuevo.getJerarquia().getNombre())) {
+                            profesorNuevo.setRenta(50);
+                        }   
+                        else{    
+                            if ("ADJUNTO CATEGORÍA I".equals(profesorNuevo.getJerarquia().getNombre())) {
+                                profesorNuevo.setRenta(40);
+                            }
+                            else{    
+                                if ("ADJUNTO CATEGORÍA II".equals(profesorNuevo.getJerarquia().getNombre())) {
+                                    profesorNuevo.setRenta(40);
+                                } 
+                                else{    
+                                    if ("INSTRUCTOR CATEGORÍA I".equals(profesorNuevo.getJerarquia().getNombre())) {
+                                        profesorNuevo.setRenta(30);
+                                    }
+                                    else{    
+                                        if ("INSTRUCTOR CATEGORÍA II".equals(profesorNuevo.getJerarquia().getNombre())) {
+                                        profesorNuevo.setRenta(20);
+                                        }
+                                        else{    
+                                            if ("AYUDANTE PROFESOR".equals(profesorNuevo.getJerarquia().getNombre())) {
+                                                profesorNuevo.setRenta(10);
+                                            }    
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+             ejbFacade.create(profesorNuevo);
+             
+             
+             
+         }
+         FacesMessage message = new FacesMessage("Succesful", "Profesores importados correctamente ");
+          FacesContext.getCurrentInstance().addMessage(null, message);
+      }
+      catch(Exception e){
+         
+         FacesMessage message = new FacesMessage("ERROR", "Archivo inválido");
+             FacesContext.getCurrentInstance().addMessage(null, message);
+             e.printStackTrace();
+      }
+        
+    }
         
     public List<edad> getListEdad(){
         listEdad = new ArrayList();
@@ -813,6 +930,9 @@ public class ProfesorController implements Serializable {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProfesorCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
+            System.out.println("WEREWEREEWRE");
+        }else{
+            System.out.println("WEREWEREEWRE");
         }
     }
 

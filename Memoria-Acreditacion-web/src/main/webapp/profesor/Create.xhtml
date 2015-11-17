@@ -30,6 +30,7 @@
                             
                         <p:outputLabel value="RUN: " for="rut_profesor" />
                         <p:inputMask id="rut_profesor" value="#{profesorController.selected.rut_profesor}" required="true" mask="999999999" title="#{bundle.CreateProfesorTitle_rut_profesor}" >
+                          
                             <f:validator validatorId="custom.numeroValidador"/>
                             <f:validateLength minimum="9" maximum="9"/>
                         </p:inputMask>   
