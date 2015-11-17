@@ -109,11 +109,20 @@
                             <p:commandButton id="addCurso"   icon="ui-icon-plus" value="Asignaturas" update=":ProfesorACreateForm, :ProfesorACreateForm2" oncomplete="PF('ProfesorACreateDialog').show()" disabled="#{empty profesorController.selected}"/>
                             <p:commandButton id="addRol"   icon="ui-icon-plus" value="Roles" update=":ProfesorRCreateForm, :ProfesorRCreateForm2" oncomplete="PF('ProfesorRCreateDialog').show()" disabled="#{empty profesorController.selected}"/>
                             <p:commandButton id="retButton" icon="ui-icon-trash"  value="Desvincular" actionListener="#{profesorController.desvincular}" update=":growl,datalist" disabled="#{empty profesorController.selected}"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
-
+                            
+                            <br /><br /><br />
+                           
+                    
+                                    </f:facet>
+                                </p:dataTable>
+                    
+                            </p:panel>
+                        </h:form>
+ <h:form>
+                                <p:fileUpload fileUploadListener="#{profesorController.upload}"  mode="advanced" dragDropSupport="false"
+                                        update="messagesFile, :ProfesorCreateForm"    />
+                                 <p:growl id="messagesFile" showDetail="true" />
+                             </h:form>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
