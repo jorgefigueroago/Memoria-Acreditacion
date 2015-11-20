@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>Acreditación Informática</title>
+            
+    </h:head>
+    <h:body>
+        
+        <ui:composition template="./template.xhtml">
+            <ui:define name="body">
+            
+                <br/>
+               
+                    
+                   
+                    
+                    <h:form>
+             
+                        <p:growl id="messages"/>
+ 
+                            <p:menubar>
+                                <p:submenu label="Información según Contrato"  icon="ui-icon-document" styleClass="ui-priority-primary">
+                                    <p:menuitem value="Número y horas docentes" outcome="/comite/tablas/PorContratoNumHoras" />
+                                    
+                                </p:submenu>
+
+                                <p:submenu label="Información según Grado A." icon="ui-icon-document" styleClass="ui-priority-primary">
+                                    <p:menuitem value="Número de docentes" outcome="/comite/tablas/PorGradoNum" />
+                                    <p:menuitem value="Total de horas" outcome="/comite/tablas/PorGradoHoras" />
+                                    <p:menuitem value="Número de docentes según Contrato y Grado" outcome="/comite/tablas/PorGradoDlg" />
+                                    
+                                </p:submenu>
+
+                                <p:submenu label="Información según Jerarquía" icon="ui-icon-document" styleClass="ui-priority-primary">
+                                    <p:menuitem value="Docentes Titular" id="NumTit" outcome="/comite/tablas/jerarquia/Titular" />
+                                    <p:menuitem value="Docentes Asociado" id="NumAsoc" outcome="/comite/tablas/jerarquia/Asociado" />
+                                    <p:menuitem value="Docentes Asistente" id="NumAsis" outcome="/comite/tablas/jerarquia/Asistente" />
+                                    <p:menuitem value="Docentes Instructor" id="NumIns" outcome="/comite/tablas/jerarquia/Instructor" />
+                                    <p:menuitem value="Docentes Ayudante" id="NumAyud" outcome="/comite/tablas/jerarquia/Ayudante" />
+                                    <p:menuitem value="Docentes Adjunto Categoría I" id="NumAdj1" outcome="/comite/tablas/jerarquia/Adjunto1" />
+                                    <p:menuitem value="Docentes Adjunto Categoría II" id="NumAdj2" outcome="/comite/tablas/jerarquia/Adjunto2" />
+                                    <p:menuitem value="Docentes Instructor Categoría I" id="NumIns1" outcome="/comite/tablas/jerarquia/Instructor1" />
+                                    <p:menuitem value="Docentes Instructor Categoría II" id="NumIns2" outcome="/comite/tablas/jerarquia/Instructor2"  />
+                                    <p:menuitem value="Docentes Ayudante Profesor" id="NumAyudProf"  outcome="/comite/tablas/jerarquia/AyudProfe" />
+                                
+                                </p:submenu>
+
+                                <p:submenu label="Información adicional" icon="ui-icon-document">
+                                    <p:menuitem value="Docentes según edad" id="DocEdad" outcome="/comite/tablas/PorEdad" />
+                                    <p:menuitem value="Docentes Jornada Completa según renta" id="DocRenta" outcome="/comite/tablas/PorRenta"  />
+                                
+                                </p:submenu>
+                                
+                                
+
+                                
+
+                                
+                                
+                            </p:menubar>
+                                                                   
+                           
+
+                            <p:separator />
+                            <br/>
+                            
+                            <h4>Bienvenido al Sistema de Gestión de la Acreditación, el cual le proporcionará
+                            información docente de las carreras dictadas en el Departamento de Ingeniería Informática.
+                            <br/>
+                            <br/>
+                            Este sistema le permitirá generar las tablas con las estadísticas de los docentes referentes
+                            a la Jerarquía, Grado Académico, Tipo de Contrato, renta y rango etáreo de éstos.</h4>
+
+                     </h:form>
+                    
+            </ui:define>
+     </ui:composition>
+    </h:body>
+  </f:view>
+</html>
+

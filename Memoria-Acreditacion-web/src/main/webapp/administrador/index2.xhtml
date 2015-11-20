@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>Acreditación Informática</title>
+            
+    </h:head>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="body">
+                <br/>
+                    
+                   
+                    
+                <h:form>
+                        
+                        <p:breadCrumb>
+                            <p:menuitem value="Portada" url="/administrador/faces/index1.xhtml" />
+                            <p:menuitem value="Administrador" url="/administrador/faces/index2.xhtml" />
+                        </p:breadCrumb>
+                        <h:panelGrid columns="1" cellpadding="10" class="ui-grid"> 
+                            
+                            <p:growl id="growl" life="2000" />
+                            
+                                <p:button outcome="/administrador/profesor/List"  value="Menú Profesores" styleClass="ui-priority-primary" style="width:400px"/>
+                                <p:button outcome="/administrador/asignatura/List" value="Menú Asignaturas" styleClass="ui-priority-primary" style="width:400px"/>
+                                <p:button outcome="/administrador/carrera/List" value="Menú Carreras"  styleClass="ui-priority-primary" style="width:400px"/>
+                                <p:button outcome="/administrador/rol/List" value="Menú Roles" styleClass="ui-priority-primary" style="width:400px"/>
+                                <p:button outcome="/administrador/gradoAcademico/List" value="Menú Grado Académico" styleClass="ui-priority-primary" style="width:400px"/>
+                                <p:button outcome="/administrador/jerarquia/List" value="Menú Jerarquías" styleClass="ui-priority-primary" style="width:400px"/>
+                            
+                            <p:column>
+                               <p:button outcome="/administrador/jerarquia/List" value="Importar desde csv" styleClass="ui-priority-primary" style="width:400px"/>
+                             
+                             </p:column>
+                                
+                                
+                                
+    
+                       
+                             
+                        </h:panelGrid>
+                        
+                                            
+                           
+
+                            
+
+                     </h:form>
+                    
+              </ui:define> 
+        </ui:composition>
+    </h:body>
+  </f:view>
+</html>
+

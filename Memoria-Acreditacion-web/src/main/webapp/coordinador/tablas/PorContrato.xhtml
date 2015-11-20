@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <title>Acreditación Informática</title>
+            
+    </h:head>
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="body">
+                <br/>
+        
+               
+                    
+                   
+                    
+                    <h:form>
+                        
+                        <p:breadCrumb>
+                            <p:menuitem value="Portada" url="/faces/coordinador/index1.xhtml" />
+                            <p:menuitem value="Tablas por Contrato" url="/faces/coordinador/tablas/PorContrato.xhtml" />
+                            
+                        </p:breadCrumb>
+                        <h:panelGrid columns="1" cellpadding="10" class="ui-grid"> 
+                            
+                            <p:growl id="growl" life="2000" />
+     
+                                <p:button value="Número de horas y docentes" id="NumHorContr" outcome="/coordinador/tablas/PorContratoNumHoras" styleClass="ui-priority-primary" style="width:400px" />
+                                
+    
+                       
+                             
+                        </h:panelGrid>
+                        
+                                            
+                           
+
+                            <p:separator />
+
+                     </h:form>
+                    
+            </ui:define>
+     </ui:composition>
+    </h:body>
+  </f:view>
+</html>
+

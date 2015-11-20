@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGradoAcademicoTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <br/>
+            <h:form id="GradoAcademicoListForm">
+                <p:breadCrumb>
+                            <p:menuitem value="Portada" url="/faces/comite/index1.xhtml" />
+                            <p:menuitem value="Tablas según Jerarquía" url="/faces/comite/tablas/PorJerarquia.xhtml" />
+                            <p:menuitem value="Tabla Jerarquía Instructor Categoría I" url="/faces/comite/tablas/jerarquia/Instructor1.xhtml" />
+                             
+                            
+                </p:breadCrumb>
+                <p:panel header="Número de docentes según Jerarquía Académica">
+                    <p:dataTable id="datalist" value="#{gradoAcademicoController.listaJInst1}" var="item"
+                                 paginator="true"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Número de docentes Jerarquía Instructor Categoría I, según Grado Académico"/>
+                            </f:facet>
+                            <h:outputText value="#{item.jerarquia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{profesorController.fecha_actual.year+1898}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.year3}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{profesorController.fecha_actual.year+1899}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.year2}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{profesorController.fecha_actual.year+1900}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.year1}"/>
+                        </p:column>
+                        
+                        
+                        <f:facet name="footer">
+                             
+                        
+                        </f:facet>
+                    </p:dataTable>
+                    <div style="text-align:center">  
+                        <h:commandButton value="Exportar">
+                            <p:dataExporter type="xls" target="datalist" fileName="tabla"/>
+                        </h:commandButton>  
+                    </div>  
+                </p:panel>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

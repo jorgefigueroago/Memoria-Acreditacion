@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProfesorEditDlg" widgetVar="ProfesorEditDialog" closeOnEscape="true" modal="true" resizable="false" height="300" appendTo="@(body)" header="EDITAR INFORMACIÓN">
+            <h:form id="ProfesorEditForm">
+              <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{profesorController.selected != null}">
+                        <p:outputLabel value="RUN: " for="rut_profesor" />
+                        <p:inputText id="rut_profesor" value="#{profesorController.selected.rut_profesor}" title="#{bundle.EditProfesorTitle_rut_profesor}" />
+                        <p:outputLabel value="Nombres: " for="nombre" />
+                        <p:inputText id="nombre" value="#{profesorController.selected.nombre}" title="#{bundle.EditProfesorTitle_nombre}" />
+                        <p:outputLabel value="Apellido paterno: " for="apellidopat" />
+                        <p:inputText id="apellidopat" value="#{profesorController.selected.apellido_pat}" title="apellidopat" />
+                        <p:outputLabel value="Apellido materno: " for="apellidomat" />
+                        <p:inputText id="apellidomat" value="#{profesorController.selected.apellido_mat}" title="apellidomat" />
+                        <p:outputLabel value="Fecha de Nacimiento: " for="fecha_nacimiento" />
+                        <p:calendar id="fecha_nacimiento"  value="#{profesorController.selected.fecha_nacimiento}" title="#{bundle.CreateProfesorTitle_fecha_nacimiento}" pattern="dd-MM-yyyy" mask="true" showOn="button"  />
+                        <p:outputLabel value="Año de ingreso: " for="ano_ingreso" />
+                        <p:inputText id="ano_ingreso"  value="#{profesorController.selected.ano_ingreso}" title="#{bundle.CreateProfesorTitle_ano_ingreso}" />
+                        <p:outputLabel for="jornada" value="Jornada Contrato: " />
+                        <p:selectOneMenu id="jornada" value="#{profesorController.selected.contrato}" style="width:190px">
+                                    <f:selectItem itemLabel="Seleccione Jornada" itemValue=""/>
+                                    <f:selectItem itemLabel="Completa" itemValue="Completa"/>
+                                    <f:selectItem itemLabel="Parcial" itemValue="Parcial"/>
+                                    <f:selectItem itemLabel="Por Hora" itemValue="Por Hora"/>
+                                </p:selectOneMenu>
+                        <p:outputLabel value="Tipo de Jerarquía: " for="jerarquia" />
+                        <p:selectOneMenu id="jerarquia" value="#{profesorController.selected.jerarquia}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{jerarquiaController.itemsAvailableSelectOne}"
+                                           var="jerarquiaItem"
+                                           itemValue="#{jerarquiaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Grado Académico: " for="grado" />
+                        <p:selectOneMenu id="grado" value="#{profesorController.selected.grado}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{gradoAcademicoController.itemsAvailableSelectOne}"
+                                           var="gradoItem"
+                                           itemValue="#{gradoItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                  <div align="center">
+                      <p:commandButton actionListener="#{profesorController.update}" value="Guardar" iconPos="right" update="display,:ProfesorListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProfesorEditDialog');"/>
+                    <p:commandButton value="Cancelar" onclick="ProfesorEditDialog.hide()"/></div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

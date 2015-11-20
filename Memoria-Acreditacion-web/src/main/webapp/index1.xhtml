@@ -16,77 +16,52 @@
         <ui:composition template="./template.xhtml">
             <ui:define name="body">
             
-                <br/>
-               
+                <div class="login">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><h:graphicImage value="/resources/logo-usach.png" width="60" /></h3>
+                
+                </div>
+                <div class="panel-body">
+                                 
+            <center><h:form id="loginForm">          
                     
+            <p:growl id="msg" showDetail="true" life="3000" >
+                    
+                <h:panelGrid columns="2" cellpadding="5" >
+                    
+                    
+                    
+                    <!-- <h:outputText value="Username" /> -->
+                    <div class="textoLogin">Nombre de usuario:&nbsp;&nbsp;&nbsp;</div>
+                    <p:inputText id="username" value="#{loginController.nombre}" ></p:inputText>
+ 
+                    <p:spacer></p:spacer>
+ 
+                    <p:message for="username" ></p:message>
+ 
+                    <!-- <h:outputText value="Password" /> -->
+                    <div class="textoLogin"> Contraseña: </div>
+ 
+                    <p:password id="password" value="#{loginController.password}"  feedback="false"></p:password>
+ 
+                    <p:spacer></p:spacer>
+ 
+                    <p:message for="password"></p:message>
+ 
+                    <p:spacer></p:spacer>
+ 
+                    <p:commandButton action="#{loginController.login}" value="Iniciar sesión" update="loginForm" ajax="true"></p:commandButton>
                    
                     
-                    <h:form>
-             
-                        <p:growl id="messages"/>
+                </h:panelGrid> 
+            </p:growl>     
+                
+            
  
-                            <p:menubar>
-                                <p:submenu label="Información según Contrato"  icon="ui-icon-document" styleClass="ui-priority-primary">
-                                    <p:menuitem value="Número y horas docentes" outcome="/tablas/PorContratoNumHoras" />
-                                    
-                                </p:submenu>
-
-                                <p:submenu label="Información según Grado A." icon="ui-icon-document" styleClass="ui-priority-primary">
-                                    <p:menuitem value="Número de docentes" outcome="/tablas/PorGradoNum" />
-                                    <p:menuitem value="Total de horas" outcome="/tablas/PorGradoHoras" />
-                                    <p:menuitem value="Número de docentes según Contrato y Grado" outcome="/tablas/PorGradoDlg" />
-                                    
-                                </p:submenu>
-
-                                <p:submenu label="Información según Jerarquía" icon="ui-icon-document" styleClass="ui-priority-primary">
-                                    <p:menuitem value="Docentes Titular" id="NumTit" outcome="/tablas/jerarquia/Titular" />
-                                    <p:menuitem value="Docentes Asociado" id="NumAsoc" outcome="/tablas/jerarquia/Asociado" />
-                                    <p:menuitem value="Docentes Asistente" id="NumAsis" outcome="/tablas/jerarquia/Asistente" />
-                                    <p:menuitem value="Docentes Instructor" id="NumIns" outcome="/tablas/jerarquia/Instructor" />
-                                    <p:menuitem value="Docentes Ayudante" id="NumAyud" outcome="/tablas/jerarquia/Ayudante" />
-                                    <p:menuitem value="Docentes Adjunto Categoría I" id="NumAdj1" outcome="/tablas/jerarquia/Adjunto1" />
-                                    <p:menuitem value="Docentes Adjunto Categoría II" id="NumAdj2" outcome="/tablas/jerarquia/Adjunto2" />
-                                    <p:menuitem value="Docentes Instructor Categoría I" id="NumIns1" outcome="/tablas/jerarquia/Instructor1" />
-                                    <p:menuitem value="Docentes Instructor Categoría II" id="NumIns2" outcome="/tablas/jerarquia/Instructor2"  />
-                                    <p:menuitem value="Docentes Ayudante Profesor" id="NumAyudProf"  outcome="/tablas/jerarquia/AyudProfe" />
-                                
-                                </p:submenu>
-
-                                <p:submenu label="Información adicional" icon="ui-icon-document">
-                                    <p:menuitem value="Docentes según edad" id="DocEdad" outcome="/tablas/PorEdad" />
-                                    <p:menuitem value="Docentes Jornada Completa según renta" id="DocRenta" outcome="/tablas/PorRenta"  />
-                                
-                                </p:submenu>
-                                
-                                <p:submenu label="Administrador" icon="ui-icon-pencil">
-                                    <p:menuitem outcome="/profesor/List"  value="Menú Profesores"/>
-                                    <p:menuitem outcome="/asignatura/List" value="Menú Asignaturas"/>
-                                    <p:menuitem outcome="/carrera/List" value="Menú Carreras" />
-                                    <p:menuitem outcome="/rol/List" value="Menú Roles" />
-                                    <p:menuitem outcome="/gradoAcademico/List" value="Menú Grado Académico" />
-                                    <p:menuitem outcome="/jerarquia/List" value="Menú Jerarquías" />
-
-                                </p:submenu>
-
-                                
-
-                                
-                                
-                            </p:menubar>
-                                                                   
-                           
-
-                            <p:separator />
-                            <br/>
-                            
-                            <h4>Bienvenido al Sistema de Gestión de la Acreditación, el cual le proporcionará
-                            información docente de las carreras dictadas en el Departamento de Ingeniería Informática.
-                            <br/>
-                            <br/>
-                            Este sistema le permitirá generar las tablas con las estadísticas de los docentes referentes
-                            a la Jerarquía, Grado Académico, Tipo de Contrato, renta y rango etáreo de éstos.</h4>
-
-                     </h:form>
+        </h:form></center> </div>
+              </div>
+        </div>
                     
             </ui:define>
      </ui:composition>
