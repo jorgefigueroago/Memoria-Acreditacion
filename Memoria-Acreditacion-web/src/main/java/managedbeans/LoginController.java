@@ -32,7 +32,7 @@ import org.primefaces.json.JSONObject;
 
 /**
  *
- * @author MacBookPro
+
  */
 @Named(value = "loginController")
 //@RequestScoped
@@ -108,7 +108,7 @@ public class LoginController implements Serializable{
         return null;
     }
     
-    public void login(){
+    public void login() throws IOException{
         System.out.println("Función login: Comenzando autenticación");
         FacesContext context = FacesContext.getCurrentInstance();
         ExternalContext externalContext = context.getExternalContext();
@@ -157,9 +157,13 @@ public class LoginController implements Serializable{
                 
                 if(valido_response){
                     System.out.println("SessionUtil: SessionScope created for " + nombre);
-                    JsfUtil.addSuccessMessage("Logeado con éxito");
                     Usuario usuario = usuarioFacade.findByUsername(nombre);
+                    if (usuario.getActivo() == false){
+                        logout2();
+                    }
+                    else{
                     nombre_usuario = usuario.getNombreUsuario();
+                    JsfUtil.addSuccessMessage("Logeado con éxito");
                     setRoles(usuario.getRoles());
                     System.out.println("nombre de usuario: "+usuario.getNombreUsuario() +" - rol: "+usuario.getRoles().get(0).getNombreTipo());
                     for (int i = 0; i < usuario.getRoles().size(); i++) {
@@ -173,7 +177,8 @@ public class LoginController implements Serializable{
                             FacesContext.getCurrentInstance().getExternalContext().redirect("/Memoria-Acreditacion-web/faces/comite/index1.xhtml");
                         }
                     }
-                    error = false;
+                    error = false;}
+                    
                 }
             } 
             else {
@@ -186,6 +191,7 @@ public class LoginController implements Serializable{
             System.out.println("SessionUtil: User or password not found");
             JsfUtil.addErrorMessage("Usuario o contraseña no existe");
             error = true;
+            logout();
         }
     }
     
@@ -206,6 +212,14 @@ public class LoginController implements Serializable{
         nombre_usuario = null;
         externalContext.redirect("/Memoria-Acreditacion-web/");
     }
+    public void logout2() throws IOException{
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.invalidateSession();
+        nombre_usuario = null;
+        System.out.println("SessionUtil: User or password not found");
+        JsfUtil.addErrorMessage("Usuario desactivado");
+    }
+    
     
     public boolean compruebaRoles(){
         boolean roles = false;
