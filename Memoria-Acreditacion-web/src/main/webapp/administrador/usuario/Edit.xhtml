@@ -11,11 +11,7 @@
         <p:dialog id="UsuarioEditDlg" widgetVar="UsuarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditUsuarioTitle}">
             <h:form id="UsuarioEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditUsuarioLabel_roles}" for="roles" />
-                        <p:inputText id="roles" value="#{usuarioController.selected.roles}" title="#{bundle.EditUsuarioTitle_roles}" />
-                        <p:outputLabel value="#{bundle.EditUsuarioLabel_uid}" for="uid" />
-                        <p:inputText id="uid" value="#{usuarioController.selected.uid}" title="#{bundle.EditUsuarioTitle_uid}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_uid}"/>
+                    <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}"> 
                         <p:outputLabel value="#{bundle.EditUsuarioLabel_rutUsuario}" for="rutUsuario" />
                         <p:inputText id="rutUsuario" value="#{usuarioController.selected.rutUsuario}" title="#{bundle.EditUsuarioTitle_rutUsuario}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_rutUsuario}"/>
                         <p:outputLabel value="#{bundle.EditUsuarioLabel_nombreUsuario}" for="nombreUsuario" />

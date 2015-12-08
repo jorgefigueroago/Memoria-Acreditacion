@@ -64,9 +64,6 @@ public class Profesor implements Serializable {
     @ManyToOne
     private GradoAcademico grado;
     
-    @ManyToMany(mappedBy="profesorrolList")
-    private List<Rol> rolList;
-    
     @ManyToMany(mappedBy="profesorasignaturaList")
     private List<Asignatura> asignaturaList;
 
@@ -149,14 +146,6 @@ public class Profesor implements Serializable {
 
     public void setGrado(GradoAcademico grado) {
         this.grado = grado;
-    }
-
-    public List<Rol> getRolList() {
-        return rolList;
-    }
-
-    public void setRolList(List<Rol> rolList) {
-        this.rolList = rolList;
     }
 
     public List<Asignatura> getAsignaturaList() {

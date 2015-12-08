@@ -8,13 +8,13 @@
 
     <ui:composition>
 
-        <p:dialog id="ProfesorRCreateDlg" widgetVar="ProfesorRCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Administrar Roles" width="60%">
-            <h:form id="ProfesorRCreateForm">
-                <p:panel header="Roles EXISTENTES">
+        <p:dialog id="UsuarioAddDialog" widgetVar="UsuarioAddDialog" modal="true" resizable="false" appendTo="@(body)" header="Administrar Roles" width="60%">
+            <h:form id="UsuarioAddForm">
+                <p:panel header="ROLES EXISTENTES">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="4" rendered="#{profesorController.selected != null}">
-                        <p:dataTable id="datalist" value="#{profesorController.roles}" var="item"
-                                     selectionMode="single" selection="#{profesorController.rol_add}"
+                    <p:panelGrid columns="4" rendered="#{usuarioController.selected != null}">
+                        <p:dataTable id="datalist" value="#{usuarioController.roles}" var="item"
+                                     selectionMode="single" selection="#{usuarioController.rol_add}"
                                     paginator="true"
                                     rowKey="#{item.id_rol}"
                                     rows="10"
@@ -31,7 +31,7 @@
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
                            <f:facet name="footer">
-                               <p:commandButton id="createButton" icon="ui-icon-plus"   value="Asignar Rol" actionListener="#{profesorController.addRol}" update=":ProfesorRCreateForm, :ProfesorRCreateForm2"  disabled="#{empty profesorController.rol_add}"/>
+                               <p:commandButton id="createButton" icon="ui-icon-plus"   value="Asignar Rol" actionListener="#{usuarioController.addRol}" update=":UsuarioAddForm, :UsuarioAddForm2"  disabled="#{empty usuarioController.rol_add}"/>
                            </f:facet>
                         </p:dataTable>
                     </p:panelGrid>
@@ -39,12 +39,12 @@
                 </p:panel>
             </h:form>
             
-            <h:form id="ProfesorRCreateForm2">
+            <h:form id="UsuarioAddForm2">
                 <p:panel header="Roles Asignados">
                 <h:panelGroup id="display">
-                    <h:panelGrid columns="4" rendered="#{profesorController.selected != null}">
-                        <p:dataTable id="datalist2" value="#{profesorController.roles_asignados}" var="item_rol"
-                                     selectionMode="single" selection="#{profesorController.rol_del}"
+                    <h:panelGrid columns="4" rendered="#{usuarioController.selected != null}">
+                        <p:dataTable id="datalist2" value="#{usuarioController.roles_asignados}" var="item_rol"
+                                     selectionMode="single" selection="#{usuarioController.rol_del}"
                                     paginator="true"
                                     rowKey="#{item_rol.id_rol}"
                                     rows="10"
@@ -62,7 +62,7 @@
                            </p:column>
                           
                            <f:facet name="footer">
-                               <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Remover Rol" actionListener="#{profesorController.delRol}" update=":ProfesorRCreateForm2"  disabled="#{empty profesorController.rol_del}"/>
+                               <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Remover Rol" actionListener="#{usuarioController.delRol}" update=":UsuarioAddForm2"  disabled="#{empty usuarioController.rol_del}"/>
                            </f:facet>
                         </p:dataTable>
                     </h:panelGrid>

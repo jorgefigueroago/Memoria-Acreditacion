@@ -1182,6 +1182,7 @@ public class GradoAcademicoController implements Serializable {
         List<Profesor> notitulado;
 
         doctor = profeFacade.findByGrado(gdoctor);
+        System.out.println("Dc " + doctor.get(0).getAno_ingreso() + doctor.get(0).isVigente());
         magister = profeFacade.findByGrado(gmagister);
         titulado = profeFacade.findByGrado(gtitulado);
         notitulado = profeFacade.findByGrado(gnotitulado);
@@ -1291,6 +1292,7 @@ public class GradoAcademicoController implements Serializable {
         listaGN.add(nuevot);
         listaGN.add(nuevont);
         listaGN.add(nuevototal);
+        System.out.println(listaGN);
     
         return listaGN;
     }

@@ -15,6 +15,12 @@
 
         <ui:define name="body">
             <h:form id="UsuarioListForm">
+                
+                <p:breadCrumb>
+                            <p:menuitem value="Portada" url="/faces/administrador/index1.xhtml" />
+                            <p:menuitem value="Administrador" url="/faces/administrador/index2.xhtml" />
+                            <p:menuitem value="Profesores" url="/faces/administrador/usuario/List.xhtml" />
+                </p:breadCrumb>
                 <p:panel header="#{bundle.ListUsuarioTitle}">
                     <p:dataTable id="datalist" value="#{usuarioController.items}" var="item"
                                  selectionMode="single" selection="#{usuarioController.selected}"
@@ -24,50 +30,46 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton addRol deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton addRol deleteButton"/>
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioTitle_roles}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.roles}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioTitle_uid}"/>
+                                <h:outputText value="Nombre de usuario"/>
                             </f:facet>
                             <h:outputText value="#{item.uid}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioTitle_rutUsuario}"/>
+                                <h:outputText value="Rut usuario"/>
                             </f:facet>
                             <h:outputText value="#{item.rutUsuario}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioTitle_nombreUsuario}"/>
+                                <h:outputText value="Nombre"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreUsuario}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioTitle_apellidoUsuario}"/>
+                                <h:outputText value="Apellido"/>
                             </f:facet>
                             <h:outputText value="#{item.apellidoUsuario}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListUsuarioTitle_activo}"/>
+                                <h:outputText value="Usuario activo"/>
                             </f:facet>
                             <p:selectBooleanCheckbox value="#{item.activo}" disabled="true"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm" oncomplete="PF('UsuarioCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty usuarioController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":UsuarioEditForm" oncomplete="PF('UsuarioEditDialog').show()" disabled="#{empty usuarioController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{usuarioController.destroy}" update=":growl,datalist" disabled="#{empty usuarioController.selected}"/>
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="Nuevo" actionListener="#{usuarioController.prepareCreate}" update=":UsuarioCreateForm" oncomplete="PF('UsuarioCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Ver" update=":UsuarioViewForm" oncomplete="PF('UsuarioViewDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Editar" update=":UsuarioEditForm" oncomplete="PF('UsuarioEditDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="Borrar" actionListener="#{usuarioController.destroy}" update=":growl,datalist" disabled="#{empty usuarioController.selected}"/>
+                            <p:commandButton id="addRol"   icon="ui-icon-plus" value="Roles" update=":UsuarioAddForm, :UsuarioAddForm2" oncomplete="PF('UsuarioAddDialog').show()" disabled="#{empty usuarioController.selected}"/>
+                            
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
@@ -76,6 +78,7 @@
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
+            <ui:include src="Add_rol.xhtml" />
         </ui:define>
     </ui:composition>
 

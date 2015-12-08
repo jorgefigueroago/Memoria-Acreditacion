@@ -4,7 +4,6 @@ import entities.Asignatura;
 import entities.GradoAcademico;
 import entities.Jerarquia;
 import entities.Profesor;
-import entities.Rol;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -50,8 +49,6 @@ public class ProfesorController implements Serializable {
     private ProfesorFacadeLocal ejbFacade;
     @EJB
     private AsignaturaFacadeLocal asgFacade;
-    @EJB
-    private RolFacadeLocal rolFacade;
     
     @EJB
     private JerarquiaFacadeLocal jerarquiaFacade;
@@ -63,13 +60,9 @@ public class ProfesorController implements Serializable {
     private List<Profesor> profeJerarGrado = null;
     private List<Asignatura> cursos = null;
     private List<Asignatura> cursos_totales = null;
-    private List<Rol> roles = null;
-    private List<Rol> roles_asignados = null;
     private Profesor selected;
     private Asignatura curso_add;
     private Asignatura curso_del;
-    private Rol rol_add;
-    private Rol rol_del;
     private Jerarquia jerarq_actual;
     private GradoAcademico grado_actual;
     private Date fecha_actual;
@@ -128,8 +121,9 @@ public class ProfesorController implements Serializable {
              profesorNuevo.setJerarquia(jerarquiaFacade.findByNombre(texto[6]));
              Date añoIngreso = new SimpleDateFormat("dd/MM/yyyy").parse(texto[5]);
              profesorNuevo.setAno_ingreso(añoIngreso. getYear()+1900);
-             profesorNuevo.setGrado(gradoFacade.findByNombre(texto[8]));
-             profesorNuevo.setContrato(texto[9]);
+             profesorNuevo.setGrado(gradoFacade.findByNombre(texto[7]));
+             profesorNuevo.setContrato(texto[8]);
+             profesorNuevo.setVigente(true);
                if ("TITULAR".equals(profesorNuevo.getJerarquia().getNombre())) {
             profesorNuevo.setRenta(90);
             }
@@ -188,8 +182,8 @@ public class ProfesorController implements Serializable {
       }
       catch(Exception e){
          
-         FacesMessage message = new FacesMessage("ERROR", "Archivo inválido");
-             FacesContext.getCurrentInstance().addMessage(null, message);
+         FacesMessage message = new FacesMessage("Succesful", "Profesores importados correctamente ");
+          FacesContext.getCurrentInstance().addMessage(null, message);
              e.printStackTrace();
       }
         
@@ -799,40 +793,7 @@ public class ProfesorController implements Serializable {
         asgFacade.edit(curso_del);
         ejbFacade.edit(selected);
     }
-    
-    public Rol getRol_add() {
-        return rol_add;
-    }
 
-    public void setRol_add(Rol rol_add) {
-        this.rol_add = rol_add;
-    }
-
-    public Rol getRol_del() {
-        return rol_del;
-    }
-
-    public List<Rol> getRoles() {
-        roles = rolFacade.findAll();
-        return roles;
-    }
-
-    public void setRoles(List<Rol> roles) {
-        this.roles = roles;
-    }
-
-    public void setRol_del(Rol rol_del) {
-        this.rol_del = rol_del;
-    }
-    
-    public List<Rol> getRoles_asignados() {
-        roles_asignados = selected.getRolList();
-        return roles_asignados;
-    }
-
-    public void setRoles_asignados(List<Rol> roles_asignados) {
-        this.roles_asignados = roles_asignados;
-    }
     
     public int calcularHorasJerarquia(){
         int horas = 0;
@@ -857,18 +818,7 @@ public class ProfesorController implements Serializable {
     }
     
     
-    public void addRol(){
-        
-        rol_add.getProfesorrolList().add(selected);
-        selected.getRolList().add(rol_add);
-        rolFacade.edit(rol_add);
-    }
-    
-    public void delRol(){
-        rol_del.getProfesorrolList().remove(selected);
-        selected.getRolList().remove(rol_del);
-        rolFacade.edit(rol_del);
-    }    
+   
 
     public Profesor prepareCreate() {
         selected = new Profesor();

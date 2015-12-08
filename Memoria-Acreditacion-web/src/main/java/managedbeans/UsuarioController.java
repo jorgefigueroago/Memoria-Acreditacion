@@ -1,11 +1,11 @@
 package managedbeans;
 
+import entities.Rol;
 import entities.Tipousuario;
 import entities.Usuario;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
 import sessionbeans.UsuarioFacadeLocal;
-
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import sessionbeans.RolFacadeLocal;
 import sessionbeans.TipousuarioFacadeLocal;
 
 @Named("usuarioController")
@@ -26,12 +27,18 @@ import sessionbeans.TipousuarioFacadeLocal;
 public class UsuarioController implements Serializable {
 
     @EJB
+    private RolFacadeLocal rolFacade;
+    
+    @EJB
     private UsuarioFacadeLocal ejbFacade;
     @EJB
     private TipousuarioFacadeLocal tipoFacade;
     private List<Usuario> items = null;
     private Usuario selected;
-    
+    private List<Rol> roles = null;
+    private List<Rol> roles_asignados = null;
+    private Rol rol_add;
+    private Rol rol_del;
     private Tipousuario tipos;
 
     public UsuarioController() {
@@ -203,6 +210,57 @@ public class UsuarioController implements Serializable {
         return getFacade().findAll();
     }
 
+    
+        
+    public Rol getRol_add() {
+        return rol_add;
+    }
+
+    public void setRol_add(Rol rol_add) {
+        this.rol_add = rol_add;
+    }
+
+    public Rol getRol_del() {
+        return rol_del;
+    }
+
+    public List<Rol> getRoles() {
+        roles = rolFacade.findAll();
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+
+    public void setRol_del(Rol rol_del) {
+        this.rol_del = rol_del;
+    }
+    
+    public List<Rol> getRoles_asignados() {
+        roles_asignados = selected.getRolList();
+        return roles_asignados;
+    }
+
+    public void setRoles_asignados(List<Rol> roles_asignados) {
+        this.roles_asignados = roles_asignados;
+    }
+    
+    public void addRol(){
+
+    rol_add.getUsuariorolList().add(selected);
+    selected.getRolList().add(rol_add);
+    rolFacade.edit(rol_add);
+     ejbFacade.edit(selected);
+    }
+    
+    public void delRol(){
+        rol_del.getUsuariorolList().remove(selected);
+        selected.getRolList().remove(rol_del);
+        rolFacade.edit(rol_del);
+       
+    } 
+    
     @FacesConverter(forClass = Usuario.class)
     public static class UsuarioControllerConverter implements Converter {
 

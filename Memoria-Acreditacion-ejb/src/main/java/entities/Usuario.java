@@ -61,6 +61,10 @@ public class Usuario implements Serializable {
     @Column(name = "activo")
     private Boolean activo;
     
+    @ManyToMany(mappedBy="usuariorolList")
+    private List<Rol> rolList;
+    
+    
     @OneToMany
     private List<Tipousuario> tipos;
 
@@ -131,6 +135,15 @@ public class Usuario implements Serializable {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
+    
+    public List<Rol> getRolList() {
+        return rolList;
+    }
+
+    public void setRolList(List<Rol> rolList) {
+        this.rolList = rolList;
+    }
+
 
     @Override
     public int hashCode() {
@@ -165,5 +178,6 @@ public class Usuario implements Serializable {
     public void setTipousuarioList(List<Tipousuario> tipousuarioList) {
         this.tipousuarioList = tipousuarioList;
     }
-    
+
+   
 }

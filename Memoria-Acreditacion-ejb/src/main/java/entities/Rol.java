@@ -39,11 +39,11 @@ public class Rol implements Serializable {
     
     private String nombre;
     
-    @JoinTable(name = "profesor_rol", joinColumns = {
+    @JoinTable(name = "usuario_rol", joinColumns = {
         @JoinColumn(name = "rol_id_rol", referencedColumnName = "id_rol")}, inverseJoinColumns = {
-        @JoinColumn(name = "profesor_rut_profesor", referencedColumnName = "rut_profesor")})
+        @JoinColumn(name = "usuario_rut_usuario", referencedColumnName = "rut_usuario")})
     @ManyToMany
-    private List<Profesor> profesorrolList;
+    private List<Usuario> usuariorolList;
 
     public Long getId_rol() {
         return id_rol;
@@ -61,12 +61,12 @@ public class Rol implements Serializable {
         this.nombre = nombre;
     }
 
-    public List<Profesor> getProfesorrolList() {
-        return profesorrolList;
+    public List<Usuario> getUsuariorolList() {
+        return usuariorolList;
     }
 
-    public void setProfesorrolList(List<Profesor> profesorrolList) {
-        this.profesorrolList = profesorrolList;
+    public void setUsuariorolList(List<Usuario> usuariorolList) {
+        this.usuariorolList = usuariorolList;
     }
 
     @Override
@@ -93,5 +93,7 @@ public class Rol implements Serializable {
     public String toString() {
         return "entities.Rol[ id=" + id_rol + " ]";
     }
+
+
     
 }
